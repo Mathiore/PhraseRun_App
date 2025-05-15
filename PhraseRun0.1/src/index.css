@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 240 80% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 240 60% 80%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 243 75% 59%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 10% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 240 10% 7%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 240 10% 7%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 243 75% 59%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 240 30% 20%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 240 30% 15%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 243 75% 59%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 50.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 30% 25%;
+    --input: 240 30% 25%;
+    --ring: 243 75% 59%;
+
+    --sidebar-background: 240 10% 7%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 243 75% 59%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 30% 15%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 30% 25%;
+    --sidebar-ring: 243 75% 59%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .word-card {
+    @apply relative bg-card p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg border border-border transition-all duration-300;
+  }
+  
+  .word-text {
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold text-wordly-primary;
+  }
+  
+  .language-badge {
+    @apply absolute top-2 right-2 sm:top-4 sm:right-4 text-xs px-2 py-1 rounded-full bg-wordly-light dark:bg-wordly-dark text-wordly-primary;
+  }
+  
+  .pronunciation {
+    @apply text-xs sm:text-sm text-muted-foreground italic mt-1 sm:mt-2;
+  }
+  
+  .definition {
+    @apply mt-3 sm:mt-4 text-base sm:text-lg;
+  }
+  
+  .example {
+    @apply mt-3 sm:mt-4 text-xs sm:text-sm text-muted-foreground italic p-2 sm:p-4 bg-muted/50 rounded-lg;
+  }
+  
+  .word-history-item {
+    @apply p-3 sm:p-4 border-b last:border-b-0 flex justify-between items-center;
+  }
+  
+  .bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-background border-t border-border flex justify-around p-2 sm:p-3 z-10 safe-area-bottom;
+  }
+  
+  .nav-item {
+    @apply flex flex-col items-center justify-center text-xs text-muted-foreground;
+  }
+  
+  .nav-item.active {
+    @apply text-wordly-primary;
+  }
+  
+  .quiz-option {
+    @apply p-3 sm:p-4 rounded-lg border border-border hover:border-wordly-primary hover:bg-wordly-light/20 dark:hover:bg-wordly-dark/50 transition-all duration-200;
+  }
+  
+  .quiz-option.selected {
+    @apply border-wordly-primary bg-wordly-light dark:bg-wordly-dark text-wordly-primary;
+  }
+  
+  .quiz-option.correct {
+    @apply border-green-500 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300;
+  }
+  
+  .quiz-option.incorrect {
+    @apply border-red-500 bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300;
+  }
+  
+  /* Adicionando classes para melhor responsividade em telas pequenas */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0.5rem);
+  }
+  
+  @supports (padding: env(safe-area-inset-bottom)) {
+    .safe-area-bottom {
+      padding-bottom: env(safe-area-inset-bottom, 0.5rem);
+    }
+  }
+}
